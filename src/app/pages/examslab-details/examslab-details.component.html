@@ -1,0 +1,140 @@
+<div class="flex flex-col sm:flex-row min-h-screen bg-gradient-to-br from-gray-300 to-blue-50 overflow-hidden">
+  <!-- Sidebar -->
+  <app-side-bar-laborantin
+    [activeItem]="activeItem"
+    [laboname]="laboname"
+    (isSidebarOpenR)="toggleSidebar($event)" 
+    (menuSelected)="onMenuSelect($event)"
+    class="min-h-screen fixed top-0 left-0 bottom-0 transform transition-transform duration-300"
+    [ngClass]="{
+      '-translate-x-full sm:translate-x-0': !isSidebarOpen,
+      'translate-x-0': isSidebarOpen
+    }">
+  </app-side-bar-laborantin>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4 sm:p-6 space-y-6 transition-all ease-in-out duration-300"
+        [ngClass]="{
+          'ml-0 sm:ml-20': isSidebarOpen,
+          'ml-0 sm:ml-[250px]': !isSidebarOpen
+        }">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Détails de l'examen</h2>
+      <div class="mb-4">
+        <p><strong>ID de l'examen :</strong> {{ exam.examenID }}</p>
+        <p><strong>Consultation :</strong> {{ exam.consultation }}</p>
+        <p><strong>Patient :</strong> {{ exam.patient }}</p>
+        <p><strong>ID Patient :</strong> {{ exam.patient_id }}</p>
+        <p><strong>Type d'examen :</strong> {{ exam.type }}</p>
+        <p><strong>État :</strong> {{ exam.etat }}</p>
+        <p><strong>Priorité :</strong> {{ exam.priorite }}</p>
+        <p><strong>Détails du médecin :</strong> {{ exam.doctor_details || 'Non renseigné' }}</p>
+        <p><strong>Date de création :</strong> {{ exam.createdAt | date:'medium' }}</p>
+        <p><strong>NSS :</strong> {{ exam.nss }}</p>
+      </div>
+    </div>
+
+    <!-- Résultats -->
+    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center">
+      <h3 class="text-lg font-semibold mt-6 mb-2">Résultats</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto">
+          <thead>
+            <tr>
+              <th class="px-4 py-2 border">Date de l'analyse</th>
+              <th class="px-4 py-2 border">Statut</th>
+              <th class="px-4 py-2 border">Métriques</th>
+              <th class="px-4 py-2 border"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let result of results">
+              <td class="px-4 py-2 border">{{ result.dateAnalyse | date:'short' }}</td>
+              <td class="px-4 py-2 border">
+                <span [ngClass]="{
+                  'text-green-500': result.status === 'termine',
+                  'text-yellow-500': result.status === 'en_cours',
+                  'text-orange-500': result.status === 'en_attente'
+                }">
+                  {{ result.status }}
+                </span>
+              </td>
+              <td class="px-4 py-2 border">
+                <ul>
+                  <li *ngFor="let metric of result.health_metrics">
+                    {{ metric.metric_type }}: {{ metric.value }} {{ metric.unit }}
+                  </li>
+                </ul>
+              </td>
+              <td class="px-4 py-2 border">
+                <button 
+                  *ngIf="result.status !== 'termine'"  
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  (click)="openPopup(result)">
+                  Ajouter une métrique
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Graphiques -->
+    <div class="flex flex-wrap justify-center gap-6 bg-neutral-100">
+      <!-- Graphique Pression artérielle -->
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+        <canvas #pressureChart class="w-full"></canvas>
+      </div>
+
+      <!-- Graphique Niveaux de Cholestérol -->
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+        <canvas #cholesterolChart class="w-full"></canvas>
+      </div>
+
+      <!-- Graphique Niveaux de Glucose -->
+      <div class="w-full sm:w-1/2 lg:w-1/3 p-4">
+        <canvas #glucoseChart class="w-full"></canvas>
+      </div>
+    </div>
+
+    <!-- Pop-up pour ajouter ou modifier les métriques -->
+    <div *ngIf="showPopup" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h3 class="text-xl font-bold mb-4">Ajouter une nouvelle métrique</h3>
+        <form (ngSubmit)="saveMetrics()">
+          <div class="space-y-4">
+            <div *ngFor="let metric of newMetrics">
+              <label class="block text-gray-700">{{ metric.metric_type }}</label>
+              <input 
+                [(ngModel)]="metric.value"
+                name="value"
+                type="text"
+                class="w-full p-2 border rounded-lg"
+                placeholder="Valeur" />
+              <input 
+                [(ngModel)]="metric.unit"
+                name="unit"
+                type="text"
+                class="w-full p-2 border rounded-lg"
+                placeholder="Unité" />
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between">
+            <button 
+              type="button"
+              class="bg-gray-500 text-white px-4 py-2 rounded-lg"
+              (click)="closePopup()">
+              Annuler
+            </button>
+            <button 
+              type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+              Sauvegarder
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

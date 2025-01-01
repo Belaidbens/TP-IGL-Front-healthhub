@@ -13,6 +13,12 @@ import { PatientsComponent } from './pages/patients/patients.component';
 import { OrdonnancesComponent } from './pages/ordonnances/ordonnances.component';
 import { RapportsComponent } from './pages/rapports/rapports.component';
 import { PatientComponent } from './pages/patient/patient.component';
+import { RadiologueComponent } from './pages/radiologue/radiologue.component';
+import { ExamensComponent } from './pages/examens/examens.component';
+import { ExamenDetailsComponent } from './pages/examen-details/examen-details.component';
+import { LaborantinComponent } from './pages/laborantin/laborantin.component';
+
+import { ExamslabDetailsComponent } from './pages/examslab-details/examslab-details.component';
 
 export const routes: Routes = [
   {
@@ -68,6 +74,23 @@ export const routes: Routes = [
   {
     path : "patient" , component : PatientComponent , 
   },
+  {
+    path : "radiologue" , component : RadiologueComponent , 
+  },
+  {
+    path : "radiologue/examens" , component : ExamensComponent , 
+  },
+  {
+     path: 'radiologue/examens/:id/examensdetails', component: ExamenDetailsComponent ,
+  },
+  {
+    path: 'laborantin', component: LaborantinComponent ,
+ },
+
+{
+  path: 'laborantin/:id/examslabdetails', component: ExamslabDetailsComponent ,
+},
+ 
   
 ];
 

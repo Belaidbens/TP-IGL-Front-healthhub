@@ -61,5 +61,6 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## install chart.js
 npm install ng2-charts chart.js
+
 npm install chart.js@latest
 npm install chartjs-plugin-datalabels

@@ -1,13 +1,13 @@
 <div class="flex flex-col sm:flex-row min-h-screen bg-gray-100 overflow-hidden">
   <!-- Sidebar -->
   <app-side-bar 
-    (isSidebarOpenR)="toggleSidebar($event)" 
-    class="min-h-screen fixed top-0 left-0 bottom-0 transform transition-transform duration-300"
-    [ngClass]="{
-      '-translate-x-full sm:translate-x-0': !isSidebarOpen,
-      'translate-x-0': isSidebarOpen
-    }">
-  </app-side-bar>
+  (isSidebarOpenR)="toggleSidebar($event)" 
+  class="min-h-screen fixed top-0 left-0 bottom-0 transform transition-transform duration-300"
+  [ngClass]="{
+    '-translate-x-full sm:translate-x-0': !isSidebarOpen,
+    'translate-x-0': isSidebarOpen
+  }">
+</app-side-bar>
   <main 
     class="flex-1 p-4 sm:p-6 space-y-6 transition-all ease-in-out duration-300"
     [ngClass]="{
@@ -16,17 +16,17 @@
     }">
      
       <!-- Navbar -->
-      <nav class="flex flex-col md:flex-row items-center gap-4 pb-4 border-b  ">
+      <nav class="flex flex-col md:flex-row items-center gap-4 pb-4 border-b bg-white rounded-md  ">
         <!-- Patient Photo -->
         <img
           [src]="patient.photo"
           alt="Photo du patient"
-          class="w-24 h-24 md:w-44 md:h-44 object-cover  rounded-md "
+          class="w-24 h-24 md:w-40 md:h-40 object-cover  rounded-md ml-2 mt-2 "
         />
       
         <!-- Patient Info -->
         <div class="flex-1 w-full">
-          <div class="flex justify-start items-stretch gap-3 ">
+          <div class="flex justify-start items-stretch gap-3 mt-2 ">
             <h2 class="text-xl font-bold text-gray-800 leading-none">
               {{ patient.name }}
             </h2>
@@ -104,7 +104,7 @@
       </nav>
 
      <!--HISTORIQUE ET ANALYSES--> 
-     <div class="flex flex-col md:flex-row justify-between items-start space-y-6 md:space-y-0 md:space-x-6 mt-8">
+     <div class="flex flex-col md:flex-row justify-between items-start space-y-6 md:space-y-0 md:space-x-6 mt-8 bg-white rounded-md">
       <!-- Historique des rendez-vous -->
       <div class="w-full md:w-1/2 p-4  rounded-lg">
         <div class="flex items-center gap-3 mb-4">
@@ -118,7 +118,7 @@
             <!-- Trait reliant les icônes entre elles (avant chaque élément sauf le premier) -->
             <div *ngIf="i > -1" class="absolute left-0 top-1/2 transform -translate-y-1/2 w-full "></div>
         
-            <!-- Date à gauche de l'icône -->
+            
             <div class="flex items-center w-1/3 md:w-1/4">
               <p class="text-sm font-semibold">{{ rendezvous.date }}</p>
             </div>
@@ -149,7 +149,7 @@
       </div>
     
       <!-- Barres graphiques -->
-      <div class="w-full md:w-1/2 p-4  border-2  rounded-lg">
+      <div class="w-full md:w-1/2 p-4   rounded-lg">
         <div class="flex items-center gap-3">
           <img src="assets/analysemedical.svg" alt="" class="mb-3">
           <h3 class="text-xl font-bold mb-0">Analyses Médicales</h3>
@@ -201,10 +201,10 @@
   </div>  
   
   <!--Tableauuu-->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-md">
   
     <!-- Tableau des examens -->
-    <div class="p-4 border-2 rounded-lg">
+    <div class="p-4 m-2  rounded-lg">
       <div class="flex items-center gap-3 mb-4">
         <img src="assets/imagerie.svg" alt="" class="mb-3 ">
         <h3 class="text-xl font-bold mb-0">Imageries Médicales</h3>
@@ -239,7 +239,7 @@
     </div>
     
     <!-- Tableau des rapports médicaux -->
-    <div class="p-4 border-2 rounded-lg">
+    <div class="p-4 m-2 rounded-lg">
       <div class="flex items-center gap-3 mb-4">
         <img src="assets/rapportmedicalicon.svg" alt="" class="mb-3 ">
         <h3 class="text-xl font-bold mb-0">Rapports Médicaux</h3>

@@ -20,7 +20,10 @@
       alt="Profile"
       class="w-fit  rounded-full"
     />
-    <span class="text-lg font-semibold" *ngIf="isSidebarOpen">Dr. Hakim</span>
+    <div class="flex flex-col justify-center">
+      <span class="text-lg font-normal text-[#000000]" *ngIf="isSidebarOpen">{{radiologuename}}</span>
+      <span class="text-lg font-normal text-[#757575]" *ngIf="isSidebarOpen">Radiologue</span>
+    </div>
   </div>
 
   <!-- Barre de recherche (visible même si la sidebar est fermée) -->
@@ -60,3 +63,4 @@
     </button>
   </div>
 </div>
+

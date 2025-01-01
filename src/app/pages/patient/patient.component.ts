@@ -55,8 +55,8 @@ export class PatientComponent implements AfterViewInit {
     { id: 1, title: 'Consultation', date: 'Janvier 2024', ordonnance: 'Télécharger l\'ordonnance', rapport: 'Télécharger le rapport', },
     { id: 2, title: 'Suivi général', date: 'Février 2024', ordonnance: 'Télécharger l\'ordonnance', rapport: 'Télécharger le rapport',},
     { id: 3, title: 'Bilan de santé', date: 'Mars 2024', ordonnance: 'Télécharger l\'ordonnance', rapport: 'Télécharger le rapport', },
-  ]
-
+  
+]
 
 
 
@@ -72,7 +72,7 @@ export class PatientComponent implements AfterViewInit {
 
   /**************************************GRAPHIQUE****************************************************** */
   healthData = [
-    { name: 'Glucose', value: 5.2, unit: 'mmol/L', color: '#FABE7A' },
+    { name: 'Glucose', value: 10, unit: 'mmol/L', color: '#FABE7A' },
     { name: 'Tension', value: 6.5, unit: 'mmHg', color: '#F6595C' },
     { name: 'Protéines', value: 12.8, unit: 'g/L', color: '#7661E2' },
     { name: 'Cholestérol', value:68, unit: 'mmol/L', color: '#F6866A' }
