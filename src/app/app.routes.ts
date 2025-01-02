@@ -19,6 +19,8 @@ import { ExamenDetailsComponent } from './pages/examen-details/examen-details.co
 import { LaborantinComponent } from './pages/laborantin/laborantin.component';
 
 import { ExamslabDetailsComponent } from './pages/examslab-details/examslab-details.component';
+import { InfermierComponent } from './pages/infermier/infermier.component';
+import { ActivityDetailsComponent } from './pages/activity-details/activity-details.component';
 
 export const routes: Routes = [
   {
@@ -89,6 +91,12 @@ export const routes: Routes = [
 
 {
   path: 'laborantin/:id/examslabdetails', component: ExamslabDetailsComponent ,
+},
+{
+  path: 'infermier', component: InfermierComponent ,
+},
+{
+  path: 'infermier/:id/activitydetails', component: ActivityDetailsComponent ,
 },
  
   

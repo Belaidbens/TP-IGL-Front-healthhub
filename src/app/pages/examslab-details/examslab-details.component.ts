@@ -31,7 +31,7 @@ export class ExamslabDetailsComponent {
     
       laboname: string = 'Said'
       selectedMenu = 'Examens'; // État pour suivre le menu actif
-    
+      
       constructor(private router: Router) {} 
     
       activeItem: string = 'Examens';

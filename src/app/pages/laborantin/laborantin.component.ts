@@ -28,6 +28,7 @@ export class LaborantinComponent {
   
     laboname: string = 'Said'
     selectedMenu = 'Examens'; // État pour suivre le menu actif
+   
   
     constructor(private router: Router) {} 
   
